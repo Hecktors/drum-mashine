@@ -1,5 +1,6 @@
 {
-  "name": "drum-maschine",
+  "homepage": ".",
+  "name": "drum-mashine",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
