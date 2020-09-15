@@ -10,7 +10,7 @@
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3"
   },
-  "homepage": "https://hecktors.github.io/drum-machine",
+  "homepage": "https://hecktors.github.io/react-drum-machine",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",

@@ -19,7 +19,6 @@ const sounds = [
 function App() {
 	const [ currentSoundName, setCurrentSoundName ] = useState('');
 	const [ sequence, setSequence ] = useState([]);
-	const [ showName, setShowName ] = useState(false);
 
 	// Initializing: fill array with audio objects
 	useEffect(() => {
@@ -56,13 +55,11 @@ function App() {
 	// Add to sound sequence and format displayed soundname
 	const addToSequence = (i) => {
 		setSequence([ ...sequence, i === 9 ? '&nbsp;' : sounds[i].key ]);
-		// setCurrentSoundName(sounds[i].name.replace('.mp3', ' ').replaceAll('_', ' '));
 	};
 
 	// Play sound if the is no break
 	const playSound = (i) => {
 		i !== 9 && sounds[i].audio.play();
-		// setCurrentSoundName(sounds[i].name.replace('.mp3', ' ').replaceAll('_', ' '));
 		setCurrentSoundName(sounds[i].name);
 	};
 
@@ -83,7 +80,6 @@ function App() {
 	// Remove all
 	const handleRemoveSequence = () => {
 		setSequence([]);
-		// currentSoundName.current = '';
 		setCurrentSoundName('');
 	};
 
@@ -110,7 +106,7 @@ function App() {
 			</div>
 			<div className="sound-display" id="display">
 				{sounds.map((sound, i) => (
-					<span className={`sound-text ${sound.name === currentSoundName ? 'show' : ''}`}>
+					<span key={sound.key} className={`sound-text ${sound.name === currentSoundName ? 'show' : ''}`}>
 						{currentSoundName.replace('.mp3', ' ').replaceAll('_', ' ')}
 					</span>
 				))}
