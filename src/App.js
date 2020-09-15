@@ -19,6 +19,7 @@ const sounds = [
 function App() {
 	const [ currentSoundName, setCurrentSoundName ] = useState('');
 	const [ sequence, setSequence ] = useState([]);
+	const [ showName, setShowName ] = useState(false);
 
 	// Initializing: fill array with audio objects
 	useEffect(() => {
@@ -32,9 +33,9 @@ function App() {
 			document.addEventListener('keydown', keyDownHandler);
 			return () => document.removeEventListener('keydown', keyDownHandler);
 		},
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 		[ sequence ]
 	);
+
 	const keyDownHandler = (e) => {
 		sounds.forEach((sound, i) => {
 			// Apply to QWERTZ and QWERTY keyboard
@@ -61,7 +62,8 @@ function App() {
 	// Play sound if the is no break
 	const playSound = (i) => {
 		i !== 9 && sounds[i].audio.play();
-		setCurrentSoundName(sounds[i].name.replace('.mp3', ' ').replaceAll('_', ' '));
+		// setCurrentSoundName(sounds[i].name.replace('.mp3', ' ').replaceAll('_', ' '));
+		setCurrentSoundName(sounds[i].name);
 	};
 
 	// Play each sound sequencely after timeout
@@ -97,24 +99,26 @@ function App() {
 
 	return (
 		<div className="App" id="drum-machine">
-			<div className="header">
-				<h1>Conga mashine</h1>
-			</div>
-			<div className="sound-display" id="display">
-				{currentSoundName}
-			</div>
-			<div className="btn-container">
-				<div className="btnDelete" onClick={handleRemoveSequence}>
+			<div className="App-header">
+				<div className="btn-delete btn-container" onClick={handleRemoveSequence}>
 					<DeleteSVG />
 				</div>
-				<div className="btnPlay" onClick={playSequence}>
+				<h1>Conga Machine</h1>
+				<div className="btn-play btn-container" onClick={playSequence}>
 					<PlaySVG />
 				</div>
+			</div>
+			<div className="sound-display" id="display">
+				{sounds.map((sound, i) => (
+					<span className={`sound-text ${sound.name === currentSoundName ? 'show' : ''}`}>
+						{currentSoundName.replace('.mp3', ' ').replaceAll('_', ' ')}
+					</span>
+				))}
 			</div>
 			<div className="wrapper">
 				<div className="sequence-display">
 					<div className="sequence-text" dangerouslySetInnerHTML={{ __html: sequence.join('') }} />
-					<div className="btnBackspace" onClick={handleSequencePop}>
+					<div className="btn-backspace" onClick={handleSequencePop}>
 						<BackspaceSVG />
 					</div>
 				</div>

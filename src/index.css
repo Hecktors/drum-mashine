@@ -1,22 +1,18 @@
-:root {
-	--primary-color: #cb229c;
-	--secondary-color: #57003f;
-	--text-color: #f469cd;
-}
-
 * {
 	margin: 0;
 	box-sizing: border-box;
 }
 
 body {
+	height: 100vh;
 	margin: 0;
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
 		'Droid Sans', 'Helvetica Neue', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-}
-
-code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+	background-image: linear-gradient(to right bottom, rgba(25, 22, 59, 0.637), rgba(23, 97, 72, 0.767)),
+		url("https://isorepublic.com/wp-content/uploads/2020/04/iso-republic-concert-stage-microphone-1100x733.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
